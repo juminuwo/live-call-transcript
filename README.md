@@ -171,3 +171,11 @@ Contributions are welcome! Please feel free to open an issue or submit a pull re
 ## License
 
 No license. Free to use.
+
+## Acknowledgements
+
+This project relies on the following open-source libraries:
+
+-   **[faster-whisper](https://github.com/guillaumekln/faster-whisper)**: For providing a faster, more efficient implementation of the Whisper model.
+
+A big thank you to the developers and maintainers of these projects.
