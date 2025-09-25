@@ -10,8 +10,8 @@ if (-not ($condaEnvs -match "live_call_transcript_312")) {
     exit 1
 }
 
-# Get the full path to the Python executable in the conda environment
-$pythonPath = "C:\Users\howis\miniconda3\envs\live_call_transcript_312\python.exe"
+# Source the configuration file
+. "./config.ps1"
 
 # Check if Python exists
 if (-not (Test-Path $pythonPath)) {
@@ -22,7 +22,7 @@ if (-not (Test-Path $pythonPath)) {
 }
 
 # Get the script path - use CPU-only version to avoid cuDNN issues
-$scriptPath = "\\wsl.localhost\Ubuntu\home\howis\git\live_call_transcript\main_cpu.py"
+$scriptPath = $scriptPathCpu
 
 Write-Host "Starting transcription with CPU processing..." -ForegroundColor Green
 Write-Host "Python: $pythonPath" -ForegroundColor Gray
