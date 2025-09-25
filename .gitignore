@@ -1,0 +1,145 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Conda environments
+.conda/
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.env.local
+.env.*.local
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+htmlcov/
+
+# Audio files
+*.wav
+*.mp3
+*.flac
+*.m4a
+*.aac
+
+# Output files
+*.jsonl
+*.csv
+transcription_*.jsonl
+transcription_*.csv
+test_*.jsonl
+test_*.csv
+*_transcript.*
+meeting_*.jsonl
+meeting_*.csv
+call_*.jsonl
+call_*.csv
+
+# Temporary files
+*.tmp
+*.temp
+chunks/
+temp/
+.tmp/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Model cache (WhisperLive/Whisper models)
+*.pt
+*.pth
+models/
+
+# Logs
+*.log
+logs/
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# Local configuration
+config.local.*
+.env.local
+
+# WhisperLive specific
+WhisperLive/__pycache__/
+WhisperLive/.git/

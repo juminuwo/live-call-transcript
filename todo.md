@@ -1,0 +1,5 @@
+- [ ] Rewrite README.md for new architecture, mention in note that this is mainly tested on Windows.
+- [ ] Remove tests for old architecture in archive folder
+- [ ] If WhisperLive is no longer needed then remove the submodule
+- [ ] create a setup.ps1 script, to setup the environment
+- [x] create a data folder and have the output of the transcript saved to the data folder

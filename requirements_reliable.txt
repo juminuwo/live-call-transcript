@@ -1,0 +1,26 @@
+# Reliable Live Call Transcription Requirements
+
+# Core audio processing
+sounddevice>=0.4.6
+numpy>=1.21.0
+
+# Faster Whisper (primary choice)
+faster-whisper>=1.0.0
+
+# OpenAI Whisper (fallback)
+openai-whisper>=20231117
+
+# Additional dependencies
+torch>=2.0.0  # Required by whisper models
+torchaudio>=2.0.0
+
+# Optional: For GPU acceleration
+# ctranslate2  # Included with faster-whisper
+
+# Development and testing
+pytest>=6.0.0
+pytest-asyncio
+
+# Logging and formatting
+rich>=12.0.0
+tqdm>=4.64.0
