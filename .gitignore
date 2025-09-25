@@ -143,3 +143,6 @@ config.local.*
 # WhisperLive specific
 WhisperLive/__pycache__/
 WhisperLive/.git/
+
+data/*.csv
+data/*.json
