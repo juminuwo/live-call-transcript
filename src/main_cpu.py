@@ -39,6 +39,7 @@ class LiveTranscriber:
         mic_device: Optional[int] = None,
         system_device: Optional[int] = None,
         output_file: Optional[str] = None,
+        output_format: str = "json",
         model_name: str = "small",
         language: str = "en",
         sample_rate: int = 16000,
@@ -46,6 +47,7 @@ class LiveTranscriber:
         self.mic_device = mic_device
         self.system_device = system_device
         self.output_file = output_file
+        self.output_format = output_format
         self.model_name = model_name
         self.language = language
         self.sample_rate = sample_rate
@@ -85,17 +87,30 @@ class LiveTranscriber:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             base_name = f"data/transcript_{timestamp}"
 
+        output_paths = []
+
         # JSON output
-        self.json_path = f"{base_name}.json"
-        self.json_file = open(self.json_path, 'w', encoding='utf-8')
+        if self.output_format in ['json', 'both']:
+            self.json_path = f"{base_name}.json"
+            self.json_file = open(self.json_path, 'w', encoding='utf-8')
+            output_paths.append(self.json_path)
+        else:
+            self.json_file = None
+            self.json_path = None
 
         # CSV output
-        self.csv_path = f"{base_name}.csv"
-        self.csv_file = open(self.csv_path, 'w', newline='', encoding='utf-8')
-        self.csv_writer = csv.writer(self.csv_file)
-        self.csv_writer.writerow(['timestamp', 'source', 'text', 'session_time'])
+        if self.output_format in ['csv', 'both']:
+            self.csv_path = f"{base_name}.csv"
+            self.csv_file = open(self.csv_path, 'w', newline='', encoding='utf-8')
+            self.csv_writer = csv.writer(self.csv_file)
+            self.csv_writer.writerow(['timestamp', 'source', 'text', 'session_time'])
+            output_paths.append(self.csv_path)
+        else:
+            self.csv_file = None
+            self.csv_writer = None
+            self.csv_path = None
 
-        logger.info(f"Output files: {self.json_path}, {self.csv_path}")
+        logger.info(f"Output files: {', '.join(output_paths)}")
 
     def _transcription_callback(self, timestamp: float, source: str, text: str):
         """Handle transcription results."""
@@ -178,8 +193,11 @@ class LiveTranscriber:
             print("\n" + "="*60)
             print("RELIABLE LIVE CALL TRANSCRIPTION ACTIVE (CPU-ONLY)")
             print("="*60)
-            print(f"JSON output: {self.json_path}")
-            print(f"CSV output: {self.csv_path}")
+            if self.json_path:
+                print(f"JSON output: {self.json_path}")
+            if self.csv_path:
+                print(f"CSV output: {self.csv_path}")
+            print(f"Output format: {self.output_format}")
             print(f"Model: {self.model_name} ({self.language}) - CPU processing")
             print(f"Microphone device: {self.mic_device}")
             print(f"System audio device: {self.system_device}")
@@ -328,6 +346,9 @@ Examples:
     # Output options
     parser.add_argument('--output', '-o', type=str,
                         help='Output file base name (timestamp added if not specified)')
+    parser.add_argument('--output-format', type=str, default='json',
+                        choices=['json', 'csv', 'both'],
+                        help='Output format: json, csv, or both (default: json)')
 
     # Audio settings
     parser.add_argument('--sample-rate', '-r', type=int, default=16000,
@@ -361,6 +382,7 @@ Examples:
             mic_device=args.mic_device,
             system_device=args.system_device,
             output_file=args.output,
+            output_format=args.output_format,
             model_name=args.model,
             language=args.lang,
             sample_rate=args.sample_rate
