@@ -12,6 +12,35 @@ A real-time transcription system that captures and transcribes both microphone a
 - **Command-Line Interface**: Provides a simple CLI for configuration.
 - **Robust and Reliable**: Designed for stability with graceful shutdown and error handling.
 
+## Audio Sampling Architecture
+
+The system uses a sophisticated chunk-based audio processing pipeline to ensure reliable real-time transcription:
+
+### Audio Capture Layer
+- **Chunk Duration**: Audio is captured in 0.3-second chunks (300ms) by default
+- **Sample Rate**: 16kHz sampling rate for optimal Whisper model performance
+- **Chunk Size**: Each chunk contains ~4,800 samples (16,000 × 0.3)
+- **Dual Streams**: Separate capture threads for microphone and system audio
+- **Buffer Management**: Circular audio buffers with 10-second maximum capacity
+
+### Processing Pipeline
+1. **Real-time Capture**: Audio callbacks receive 0.3s chunks from sound devices
+2. **Buffer Accumulation**: Chunks are accumulated in thread-safe circular buffers
+3. **Transcription Trigger**: When buffer reaches 2+ seconds, transcription begins
+4. **Chunk Processing**: 5-second audio segments are extracted for Whisper transcription
+5. **Overlap Strategy**: Buffers maintain history to prevent audio loss between chunks
+
+### Voice Activity Detection (VAD)
+- **Energy Threshold**: RMS < 0.005 filters out silent segments
+- **Built-in VAD**: `faster-whisper` includes Voice Activity Detection with:
+  - Minimum silence duration: 500ms
+  - Speech padding: 200ms before/after detected speech
+
+### Memory Management
+- **Buffer Cleanup**: Buffers are trimmed when exceeding 8 seconds
+- **Circular Design**: Old audio automatically discarded to prevent memory overflow
+- **Deduplication**: Smart text deduplication prevents repeated transcriptions
+
 ## Installation
 
 ### Prerequisites
