@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Logging utilities for live call transcription.
 Handles JSON formatting, file output, and real-time display of transcription results.

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Test script to verify audio device setup for live_call_transcript_312 project.
 Tests both microphone and system audio capture capabilities.

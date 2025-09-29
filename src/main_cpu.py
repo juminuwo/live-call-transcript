@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Reliable Live Call Transcription System - CPU Only Version
 This version forces CPU-only transcription to avoid cuDNN issues.

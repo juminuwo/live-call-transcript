@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Reliable Live Call Transcription System
 Main application using the new reliable architecture.

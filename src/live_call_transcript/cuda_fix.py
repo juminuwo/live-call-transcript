@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 CUDA/cuDNN initialization fix.
 This module MUST be imported before any CUDA libraries to properly set up cuDNN.

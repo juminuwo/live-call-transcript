@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Reliable audio capture system for dual-stream transcription.
 Simplified and more robust audio handling with better error recovery.

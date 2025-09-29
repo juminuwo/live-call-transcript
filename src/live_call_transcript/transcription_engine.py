@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Reliable transcription engine using faster-whisper directly.
 No more server/client WebSocket complexity - just local, direct transcription.
